@@ -1,45 +1,40 @@
 <template>
-	<v-dialog v-model="dialogSignIn" class="mx-auto" max-width="374">
-		<template #activator="{ on, attrs }">
-			<slot name="activator" :on="on" :attrs="attrs">
-				<v-btn icon v-bind="attrs" v-on="on">
-					<v-icon>mdi-account</v-icon>
-				</v-btn>
-			</slot>
-		</template>
+	<div>
+		<v-dialog v-model="dialogSignIn" class="mx-auto" max-width="374">
+			<v-card>
+				<v-card-title class="justify-space-between mb-4">
+					<span>Sing-in</span>
+					<v-btn icon @click="dialogSignIn = false"
+						><v-icon>mdi-window-close</v-icon></v-btn
+					>
+				</v-card-title>
 
-		<v-card>
-			<v-card-title class="justify-space-between mb-4">
-				<span>Sing-in</span>
-				<v-btn icon @click="dialogSignIn = false"
-					><v-icon>mdi-window-close</v-icon></v-btn
-				>
-			</v-card-title>
+				<v-card-text>
+					<v-text-field label="Email address" type="email"></v-text-field>
+					<v-text-field label="Password" type="password"></v-text-field>
+				</v-card-text>
 
-			<v-card-text>
-				<v-text-field label="Email address" type="email"></v-text-field>
-				<v-text-field label="Password" type="password"></v-text-field>
-			</v-card-text>
+				<v-divider></v-divider>
 
-			<v-divider></v-divider>
-
-			<v-card-actions class="py-4 text-center">
-				<v-btn
-					color="success"
-					class="text-subtitle-2 text-none"
-					depressed
-					@click="
-						if ((dialogSignIn = true)) {
-							(dialogSignIn = false), (dialogSignUp = true);
-						}
-					"
-					>Sign-up</v-btn
-				>
-				<v-btn color="primary" class="text-subtitle-2 text-none" depressed>
-					Done
-				</v-btn>
-			</v-card-actions>
-		</v-card>
+				<v-card-actions class="py-4 text-center">
+					<v-btn
+						color="success"
+						class="text-subtitle-2 text-none"
+						depressed
+						@click="
+							if ((dialogSignIn = true)) {
+								(dialogSignIn = false), (dialogSignUp = true);
+							}
+						"
+						>Sign-up</v-btn
+					>
+					<v-btn color="primary" class="text-subtitle-2 text-none" depressed>
+						Done
+					</v-btn>
+				</v-card-actions>
+			</v-card>
+			<!-- <site-sign /> -->
+		</v-dialog>
 
 		<v-dialog v-model="dialogSignUp" class="mx-auto" max-width="374">
 			<v-card>
@@ -90,12 +85,15 @@
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
-	</v-dialog>
+	</div>
 </template>
 
 <script>
 export default {
-	name: 'Auth',
+	name: 'App',
+	components: {
+		// SiteSign
+	},
 	data() {
 		return {
 			dialogSignIn: false,
@@ -103,6 +101,7 @@ export default {
 			email: '',
 			password: ''
 		};
+		///
 	},
 	methods: {
 		signUp() {
@@ -113,6 +112,12 @@ export default {
 					console.log(result.user);
 				});
 		}
+		// 	openDialog() {
+		// 		this.dialog = true;
+		// 	},
+		// 	closeDialog() {
+		// 		this.dialog = false;
+		// 	}
 	}
 };
 </script>
