@@ -5,6 +5,10 @@
 				<v-btn icon v-bind="attrs" v-on="on">
 					<v-icon>mdi-account</v-icon>
 				</v-btn>
+
+				<v-btn icon @click="signOut" v-if="dialogSignIn">
+					<v-icon>mdi-logout</v-icon>
+				</v-btn>
 			</slot>
 		</template>
 
@@ -17,8 +21,22 @@
 			</v-card-title>
 
 			<v-card-text>
-				<v-text-field label="Email address" type="email"></v-text-field>
-				<v-text-field label="Password" type="password"></v-text-field>
+				<form>
+					<v-text-field
+						label="E-mail"
+						type="email"
+						value=""
+						v-model="email"
+					></v-text-field>
+				</form>
+				<form>
+					<v-text-field
+						label="Password"
+						type="password"
+						value=""
+						v-model="password"
+					></v-text-field>
+				</form>
 			</v-card-text>
 
 			<v-divider></v-divider>
@@ -35,7 +53,14 @@
 					"
 					>Sign-up</v-btn
 				>
-				<v-btn color="primary" class="text-subtitle-2 text-none" depressed>
+				<v-spacer />
+				<v-btn
+					:loading="loading"
+					color="primary"
+					class="text-subtitle-2 text-none"
+					depressed
+					@click="signIn"
+				>
 					Done
 				</v-btn>
 			</v-card-actions>
@@ -51,7 +76,12 @@
 				</v-card-title>
 
 				<v-card-text>
-					<v-text-field label="Name" value=""></v-text-field>
+					<v-text-field
+						label="Name"
+						type="name"
+						value=""
+						v-model="name"
+					></v-text-field>
 					<v-text-field
 						label="E-mail"
 						type="email"
@@ -80,7 +110,9 @@
 						"
 						>Sign-in</v-btn
 					>
+					<v-spacer />
 					<v-btn
+						:loading="loading"
 						color="primary"
 						class="text-subtitle-2 text-none"
 						depressed
@@ -100,18 +132,48 @@ export default {
 		return {
 			dialogSignIn: false,
 			dialogSignUp: false,
+			name: '',
 			email: '',
-			password: ''
+			password: '',
+			loading: false
 		};
 	},
 	methods: {
-		signUp() {
-			this.$firebase
-				.auth()
+		async signUp() {
+			this.loading = true;
+			await new this.$firebase.auth()
 				.createUserWithEmailAndPassword(this.email, this.password)
-				.then(result => {
-					console.log(result.user);
-				});
+				.then(
+					result => {
+						console.log(result.user);
+						result.user.updateProfile({ displayName: this.name });
+						this.loading = true;
+						alert('Registered successfully');
+					},
+					err => {
+						this.loading = false;
+						alert(`Error - ${err.message}`);
+					}
+				);
+		},
+		async signIn() {
+			this.loading = true;
+			await new this.$firebase.auth()
+				.signInWithEmailAndPassword(this.email, this.password)
+				.then(
+					result => {
+						console.log(result.user);
+						this.loading = true;
+						alert('Welcome');
+					},
+					err => {
+						this.loading = false;
+						alert(`Error - ${err.message}`);
+					}
+				);
+		},
+		signOut() {
+			this.$firebase.auth().signOut();
 		}
 	}
 };
