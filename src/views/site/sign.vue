@@ -59,6 +59,15 @@
 					color="primary"
 					class="text-subtitle-2 text-none"
 					depressed
+					@click="signInWithGoogle"
+				>
+					Google Log-in
+				</v-btn>
+				<v-btn
+					:loading="loading"
+					color="primary"
+					class="text-subtitle-2 text-none"
+					depressed
 					@click="signIn"
 				>
 					Done
@@ -139,6 +148,28 @@ export default {
 		};
 	},
 	methods: {
+		async signInWithGoogle() {
+			const provider = new this.$firebase.auth.GoogleAuthProvider();
+			this.$firebase.auth().languageCode = 'ko';
+			const r = this.$firebase.auth().signInWithPopup(provider);
+			console.log(r);
+		},
+		async signIn() {
+			this.loading = true;
+			await new this.$firebase.auth()
+				.signInWithEmailAndPassword(this.email, this.password)
+				.then(
+					() => {
+						this.loading = false;
+						alert('Welcome');
+						this.$router.replace('/about');
+					},
+					err => {
+						this.loading = false;
+						alert(`Error - ${err.message}`);
+					}
+				);
+		},
 		async signUp() {
 			this.loading = true;
 			await new this.$firebase.auth()
@@ -147,7 +178,7 @@ export default {
 					result => {
 						console.log(result.user);
 						result.user.updateProfile({ displayName: this.name });
-						this.loading = true;
+						this.loading = false;
 						alert('Registered successfully');
 					},
 					err => {
@@ -156,22 +187,7 @@ export default {
 					}
 				);
 		},
-		async signIn() {
-			this.loading = true;
-			await new this.$firebase.auth()
-				.signInWithEmailAndPassword(this.email, this.password)
-				.then(
-					result => {
-						console.log(result.user);
-						this.loading = true;
-						alert('Welcome');
-					},
-					err => {
-						this.loading = false;
-						alert(`Error - ${err.message}`);
-					}
-				);
-		},
+
 		signOut() {
 			this.$firebase.auth().signOut();
 		}
