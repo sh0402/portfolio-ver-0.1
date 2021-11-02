@@ -54,7 +54,7 @@
 					>Sign-up</v-btn
 				>
 				<v-spacer />
-				<v-btn
+				<!-- <v-btn
 					:loading="loading"
 					color="primary"
 					class="text-subtitle-2 text-none"
@@ -62,7 +62,7 @@
 					@click="signInWithGoogle"
 				>
 					Google Log-in
-				</v-btn>
+				</v-btn> -->
 				<v-btn
 					:loading="loading"
 					color="primary"
@@ -148,12 +148,13 @@ export default {
 		};
 	},
 	methods: {
-		async signInWithGoogle() {
-			const provider = new this.$firebase.auth.GoogleAuthProvider();
-			this.$firebase.auth().languageCode = 'ko';
-			const r = this.$firebase.auth().signInWithPopup(provider);
-			console.log(r);
-		},
+		// async signInWithGoogle() {
+		// 	this.loading = true;
+		// 	const provider = await new this.$firebase.auth.GoogleAuthProvider();
+		// 	this.$firebase.auth().languageCode = 'ko';
+		// 	const r = this.$firebase.auth().signInWithPopup(provider);
+		// 	console.log(r);
+		// },
 		async signIn() {
 			this.loading = true;
 			await new this.$firebase.auth()
