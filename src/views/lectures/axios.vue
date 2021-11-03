@@ -68,6 +68,7 @@ export default {
 	},
 	methods: {
 		async create() {
+			this.$toasted.global.error('???');
 			const r = await this.$axios.post(
 				'http://localhost:5000/myportfolio-soot/us-central1/test/asd'
 			);
