@@ -64,45 +64,45 @@ export default {
 			textRead: '',
 			textUpdate: '',
 			textDelete: ''
-		};
+		}
 	},
 	methods: {
 		async create() {
-			const r = await this.$axios.post('test');
-			this.textCreate = r.data;
+			const r = await this.$axios.post('test')
+			this.textCreate = r.data
 		},
 		read() {
 			this.$axios
 				.get('test/111')
 				.then(r => {
-					this.textRead = r.data;
+					this.textRead = r.data
 				})
 				.catch(e => {
-					console.error(e.message);
-				});
+					console.error(e.message)
+				})
 		},
 		update() {
 			this.$axios
 				.put('test/222')
 				.then(r => {
-					this.textUpdate = r.data;
+					this.textUpdate = r.data
 				})
 				.catch(e => {
-					console.error(e.message);
-				});
+					console.error(e.message)
+				})
 		},
 		del() {
 			this.$axios
 				.delete('test/333')
 				.then(r => {
-					this.textDelete = r.data;
+					this.textDelete = r.data
 				})
 				.catch(e => {
-					console.error(e.message);
-				});
+					console.error(e.message)
+				})
 		}
 	}
-};
+}
 </script>
 
 <style></style>

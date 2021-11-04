@@ -1,7 +1,7 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
@@ -11,23 +11,23 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		setTitle(state, payload) {
-			state.title = payload;
+			state.title = payload
 		},
 		setUser(state, user) {
-			state.user = user;
+			state.user = user
 		},
 		setToken(state, token) {
-			state.token = token;
+			state.token = token
 		}
 	},
 	actions: {
 		getUser({ commit }, user) {
-			commit('setUser', user);
-			if (!user) return;
+			commit('setUser', user)
+			if (!user) return
 			user.getIdToken().then(token => {
-				commit('setToken', token);
-			});
+				commit('setToken', token)
+			})
 		}
 	},
 	modules: {}
-});
+})

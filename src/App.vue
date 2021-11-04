@@ -2,16 +2,16 @@
 	<v-app id="App">
 		<v-app-bar app color="white" light>
 			<v-container class="d-flex">
-				<v-img
+				<!-- <v-img
 					alt="Vuetify Logo"
 					class="shrink mr-4"
 					contain
 					src="@/assets/logo.png"
 					transition="scale-transition"
 					width="40"
-				/>
-
-				<v-toolbar-items>
+				/> -->
+				<v-toolbar-title>SOOT</v-toolbar-title>
+				<v-toolbar-items class="height: 32">
 					<v-btn text> Home </v-btn>
 					<v-btn text> About </v-btn>
 					<v-btn text> Projects </v-btn>
@@ -64,16 +64,16 @@ export default {
 			type: false,
 			email: '',
 			password: ''
-		};
+		}
 		///
 	},
 	methods: {
 		signOut() {
-			this.$firebase.auth().signOut();
-			this.$Progress.start();
+			this.$firebase.auth().signOut()
+			this.$Progress.start()
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss">

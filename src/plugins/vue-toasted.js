@@ -1,15 +1,15 @@
-import Vue from 'vue';
-import Toasted from 'vue-toasted';
+import Vue from 'vue'
+import Toasted from 'vue-toasted'
 
 // you can also pass options, check options reference below
 Vue.use(Toasted, {
 	iconPack: 'mdi'
-});
+})
 
 Vue.toasted.register(
 	'error',
 	payload => {
-		return payload;
+		return payload
 	},
 	{
 		icon: 'mdi-alert-circle',
@@ -19,8 +19,8 @@ Vue.toasted.register(
 		action: {
 			text: 'Cancel',
 			onClick: (e, toastObject) => {
-				toastObject.goAway(0);
+				toastObject.goAway(0)
 			}
 		}
 	}
-);
+)

@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import VueProgressBar from 'vue-progressbar';
+import Vue from 'vue'
+import VueProgressBar from 'vue-progressbar'
 
 const options = {
 	// color: '#bffaf3',
@@ -13,6 +13,6 @@ const options = {
 	// autoRevert: true,
 	// location: 'left',
 	// inverse: false
-};
+}
 
-Vue.use(VueProgressBar, options);
+Vue.use(VueProgressBar, options)

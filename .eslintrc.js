@@ -24,15 +24,20 @@ module.exports = {
 			// https://prettier.io/docs/en/options.html
 			{
 				singleQuote: true,
-				semi: true,
+				semi: false,
 				useTabs: true,
 				tabWidth: 2,
 				trailingComma: 'none',
 				printWidth: 80,
 				bracketSpacing: true,
-				arrowParens: 'avoid'
+				arrowParens: 'avoid',
+				endOfLine: 'auto'
 			}
 		],
-		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+		'linebreak-style': [
+			'error',
+			require('os').EOL === '\r\n' ? 'windows' : 'unix'
+		]
 	}
-};
+}

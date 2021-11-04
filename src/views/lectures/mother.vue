@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import MySon from '@/components/mySon';
-import MyDoughter from '@/components/myDoughter';
+import MySon from '@/components/mySon'
+import MyDoughter from '@/components/myDoughter'
 
 export default {
 	components: {
@@ -23,14 +23,14 @@ export default {
 	data() {
 		return {
 			call: false
-		};
+		}
 	},
 	methods: {
 		listen() {
-			this.call = true;
+			this.call = true
 		}
 	}
-};
+}
 </script>
 
 <style></style>

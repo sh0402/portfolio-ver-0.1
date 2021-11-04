@@ -8,10 +8,10 @@
 export default {
 	methods: {
 		set() {
-			this.$store.commit('setTitle', 'change title');
+			this.$store.commit('setTitle', 'change title')
 		}
 	}
-};
+}
 </script>
 
 <style></style>

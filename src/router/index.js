@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-import Home from '../views/Home.vue';
+import Home from '../views/Home.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const router = new VueRouter({
 	mode: 'history',
@@ -14,8 +14,8 @@ const router = new VueRouter({
 			name: 'Home',
 			component: Home,
 			beforeEnter: (to, from, next) => {
-				console.log('bf enter');
-				next();
+				console.log('bf enter')
+				next()
 			}
 		},
 		{
@@ -40,18 +40,18 @@ const router = new VueRouter({
 			component: () => import('../views/lectures/vuex')
 		}
 	]
-});
+})
 
 router.beforeEach((to, from, next) => {
-	Vue.prototype.$Progress.start();
+	Vue.prototype.$Progress.start()
 	setTimeout(() => {
-		if (Vue.prototype.$isFirebaseAuth) next();
-	}, 2000);
-});
-router.afterEach((to, from) => {
-	console.log(to);
-	console.log(from);
-	Vue.prototype.$Progress.finish();
-});
+		if (Vue.prototype.$isFirebaseAuth) next()
+	}, 2000)
+})
+// router.afterEach((to, from) => {
+// 	console.log(to)
+// 	console.log(from)
+// 	Vue.prototype.$Progress.finish()
+// })
 
-export default router;
+export default router

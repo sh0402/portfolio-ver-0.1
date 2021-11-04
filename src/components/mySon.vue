@@ -13,10 +13,10 @@ export default {
 	props: ['name'],
 	methods: {
 		call() {
-			this.$emit('help');
+			this.$emit('help')
 		}
 	}
-};
+}
 </script>
 
 <style></style>

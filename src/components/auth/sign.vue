@@ -6,8 +6,8 @@
 					<v-img icon><v-icon size="500">mdi-account-box</v-icon></v-img>
 				</v-flex>
 				<v-flex xs12 sm5>
-					<sign-in v-if="type" />
-					<sign-up v-else />
+					<sign-in v-if="type" @changeType="type = !type" />
+					<sign-up v-else @changeType="type = !type" />
 				</v-flex>
 			</v-layout>
 		</v-card>
@@ -15,18 +15,18 @@
 </template>
 
 <script>
-import SignIn from '@/components/auth/signIn';
-import SignUp from '@/components/auth/signIn';
+import SignIn from '@/components/auth/signIn'
+import SignUp from '@/components/auth/signUp'
 
 export default {
 	data() {
 		return {
 			type: false
-		};
+		}
 	},
 	components: {
 		SignIn,
 		SignUp
 	}
-};
+}
 </script>
