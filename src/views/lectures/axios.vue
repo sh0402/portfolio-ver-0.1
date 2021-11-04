@@ -68,15 +68,12 @@ export default {
 	},
 	methods: {
 		async create() {
-			this.$toasted.global.error('???');
-			const r = await this.$axios.post(
-				'http://localhost:5000/myportfolio-soot/us-central1/test/asd'
-			);
+			const r = await this.$axios.post('test');
 			this.textCreate = r.data;
 		},
 		read() {
 			this.$axios
-				.get('http://localhost:5000/myportfolio-soot/us-central1/test/111')
+				.get('test/111')
 				.then(r => {
 					this.textRead = r.data;
 				})
@@ -86,7 +83,7 @@ export default {
 		},
 		update() {
 			this.$axios
-				.put('http://localhost:5000/myportfolio-soot/us-central1/test/222')
+				.put('test/222')
 				.then(r => {
 					this.textUpdate = r.data;
 				})
@@ -96,7 +93,7 @@ export default {
 		},
 		del() {
 			this.$axios
-				.delete('http://localhost:5000/myportfolio-soot/us-central1/test/333')
+				.delete('test/333')
 				.then(r => {
 					this.textDelete = r.data;
 				})
