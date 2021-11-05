@@ -1,9 +1,9 @@
 <template>
 	<v-container grid-list-md>
-		<v-card class="rounded-xl py-16">
+		<v-card width="1200" height="650">
 			<v-layout row wrap align-center justify-center>
 				<v-flex xs12 sm5 class="hidden-xs-only" text-center>
-					<v-img icon><v-icon size="500">mdi-account-box</v-icon></v-img>
+					<v-img></v-img>
 				</v-flex>
 				<v-flex xs12 sm5>
 					<sign-in v-if="type" @changeType="type = !type" />

@@ -1,5 +1,5 @@
 <template>
-	<v-card flat>
+	<v-card flat color="transparent">
 		<v-form v-model="valid" ref="form" lazy-validation>
 			<v-card-title class="justify-space-between">
 				<span class="title">Sing-In</span>
