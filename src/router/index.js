@@ -42,12 +42,12 @@ const router = new VueRouter({
 	]
 })
 
-// router.beforeEach((to, from, next) => {
-// 	Vue.prototype.$Progress.start()
-// 	setTimeout(() => {
-// 		if (Vue.prototype.$isFirebaseAuth) next()
-// 	}, 2000)
-// })
+router.beforeEach((to, from, next) => {
+	Vue.prototype.$Progress.start()
+	setTimeout(() => {
+		if (Vue.prototype.$isFirebaseAuth) next()
+	}, 2000)
+})
 // router.afterEach((to, from) => {
 // 	console.log(to)
 // 	console.log(from)

@@ -53,13 +53,13 @@
 
 				<v-avatar color="grey darken-1" size="32"></v-avatar>
 				<v-btn icon @click="signOut" width="32" height="32">
-					<v-icon>mdi-dots-vertical</v-icon>
+					<v-icon>mdi-login-variant</v-icon>
 				</v-btn>
 			</v-container>
 		</v-app-bar>
 
 		<v-main>
-			<!-- <v-container grid-list-md>
+			<v-container grid-list-md>
 				<v-layout row wrap align-center text-center justify-center>
 					<v-card color="transparent" flat v-if="!$isFirebaseAuth">
 						<v-card-text>
@@ -71,7 +71,7 @@
 						<v-card-text> 인증 상태를 기다리는 중입니다. </v-card-text>
 					</v-card>
 				</v-layout>
-			</v-container> -->
+			</v-container>
 
 			<router-view></router-view>
 		</v-main>

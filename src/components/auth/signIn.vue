@@ -102,11 +102,14 @@ export default {
 			this.$firebase.auth().languageCode = 'ko'
 			await this.$firebase.auth().signInWithPopup(provider)
 		},
-		signInWithEmailAndPassword() {
+		async signInWithEmailAndPassword() {
 			if (!this.$refs.form.validate())
 				return this.$toasted.global.error(
 					'Please fill out the input form correctly.'
 				)
+			await this.$firebase
+				.auth()
+				.signInWithEmailAndPassword(this.form.email, this.form.password)
 			alert('Success')
 		}
 	}
