@@ -1,6 +1,5 @@
 const app = require('express')()
 const cors = require('cors')
-require('express-async-errors')
 
 app.use(cors())
 

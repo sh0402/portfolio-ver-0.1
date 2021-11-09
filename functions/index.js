@@ -11,13 +11,13 @@ const db = admin.firestore()
 // console.log(functions.config().admin.email)
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
-	functions.logger.info('Hello logs!', { structuredData: true })
+	// functions.logger.info('Hello logs!', { structuredData: true })
 	response.send('Hello from Firebase!')
 })
 
 exports.test = functions.https.onRequest(require('./test'))
 exports.createUser = functions.auth.user().onCreate(async user => {
-	const { uid, email, displayName, emailVerified, photoURL, disable } = user
+	const { uid, email, displayName, emailVerified, photoURL, disabled } = user
 	const claims = { level: 2 }
 	if (functions.config().admin.email === user.email && user.emailVerified)
 		claims.level = 0
@@ -29,13 +29,13 @@ exports.createUser = functions.auth.user().onCreate(async user => {
 		displayName,
 		emailVerified,
 		photoURL,
-		disable
+		disabled
 	}
 	const r = await db.collection('users').doc(uid).set(d)
 	return r
 })
 
-exports.deleteUser = functions.auth.user().onDelete(async user => {
-	const r = await db.collection('users').doc(user.uid).delete()
+exports.deleteUser = functions.auth.user().onDelete(user => {
+	const r = db.collection('users').doc(user.uid).delete()
 	return r
 })

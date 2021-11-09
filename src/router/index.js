@@ -44,18 +44,40 @@ const router = new VueRouter({
 		{
 			path: '/lectures/vuex',
 			component: () => import('../views/lectures/vuex')
+		},
+		{
+			path: '*',
+			component: () => import('../views/e404')
 		}
 	]
 })
 
+const waitFirebase = () => {
+	return new Promise((resolve, reject) => {
+		let cnt = 0
+		const tmr = setInterval(() => {
+			if (store.state.firebaseLoaded) {
+				clearInterval(tmr)
+				resolve()
+			} else if (cnt++ > 200) {
+				clearInterval(tmr)
+				reject(Error('파이어베이스 로드를 실패했습니다.'))
+			}
+		}, 10)
+	})
+}
+
 router.beforeEach((to, from, next) => {
 	Vue.prototype.$Progress.start()
 	if (store.state.firebaseLoaded) next()
+	waitFirebase()
+		.then(() => next())
+		.catch(e => Vue.prototype.$toasted.global.error(e.message))
 })
-// router.afterEach((to, from) => {
-// 	console.log(to)
-// 	console.log(from)
-// 	Vue.prototype.$Progress.finish()
-// })
+router.afterEach((to, from) => {
+	console.log(to)
+	console.log(from)
+	Vue.prototype.$Progress.finish()
+})
 
 export default router
