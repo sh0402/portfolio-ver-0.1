@@ -39,7 +39,14 @@
 					height="32"
 					@click="drawer = !drawer"
 				></v-app-bar-nav-icon>
-
+				<v-img
+					alt="Vuetify Logo"
+					class="shrink mr-2 hidden-sm-and-down"
+					contain
+					src="./assets/logo.png"
+					transition="scale-transition"
+					width="32"
+				/>
 				<v-btn
 					v-for="link in links"
 					:key="link"
@@ -52,6 +59,7 @@
 				<v-spacer></v-spacer>
 
 				<v-avatar color="grey darken-1" size="32"></v-avatar>
+
 				<v-btn icon @click="signOut" width="32" height="32">
 					<v-icon>mdi-login-variant</v-icon>
 				</v-btn>
@@ -61,7 +69,7 @@
 		<v-main>
 			<v-container grid-list-md>
 				<v-layout row wrap align-center text-center justify-center>
-					<v-card color="transparent" flat v-if="!$isFirebaseAuth">
+					<v-card color="transparent" flat v-if="!$store.state.firebaseLoaded">
 						<v-card-text>
 							<v-progress-circular
 								indeterminate
