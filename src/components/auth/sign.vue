@@ -1,6 +1,6 @@
 <template>
 	<v-container grid-list-md>
-		<v-card width="1200" height="650">
+		<v-card height="650">
 			<v-layout row wrap align-center justify-center>
 				<v-flex xs12 sm5 class="hidden-xs-only" text-center>
 					<v-img></v-img>

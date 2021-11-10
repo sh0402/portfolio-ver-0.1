@@ -1,7 +1,13 @@
 <template>
 	<v-app id="App">
 		<v-navigation-drawer v-model="drawer" fixed width="100%">
-			<v-toolbar flat color="transparent" class="font-weight-bold" justify-end>
+			<v-toolbar
+				id="toolbar-mo"
+				color="transparent"
+				class="font-weight-bold"
+				justify-end
+				flat
+			>
 				<v-toolbar-title class="pr-4"> Soot's Portfoilo </v-toolbar-title>
 				<span class="caption">ver.0.0.1</span>
 				<v-spacer></v-spacer>
@@ -19,7 +25,7 @@
 					</v-list-item-avatar>
 					<v-list-item-content>
 						<v-list-item-title>
-							{{ item.title }}
+							{{ (item.title, item.to) }}
 						</v-list-item-title>
 					</v-list-item-content>
 					<!-- <v-list-item-action>
@@ -31,39 +37,40 @@
 			</v-list>
 		</v-navigation-drawer>
 
-		<v-app-bar app color="white" flat>
-			<v-container class="py-0 fill-height">
-				<v-app-bar-nav-icon
-					class="hidden-md-and-up"
-					width="32"
-					height="32"
-					@click="drawer = !drawer"
-				></v-app-bar-nav-icon>
-				<v-img
-					alt="Vuetify Logo"
-					class="shrink mr-2 hidden-sm-and-down"
-					contain
-					src="./assets/logo.png"
-					transition="scale-transition"
-					width="32"
-				/>
-				<v-btn
-					v-for="link in links"
-					:key="link"
-					text
-					class="hidden-sm-and-down"
-				>
-					{{ link }}
-				</v-btn>
-
-				<v-spacer></v-spacer>
-
-				<v-avatar color="grey darken-1" size="32"></v-avatar>
-
-				<v-btn icon @click="signOut" width="32" height="32">
-					<v-icon>mdi-login-variant</v-icon>
-				</v-btn>
-			</v-container>
+		<v-app-bar app color="white">
+			<v-toolbar max-width="1200" class="mx-auto" flat>
+				<v-container class="py-0 fill-height">
+					<v-app-bar-nav-icon
+						class="hidden-md-and-up"
+						width="32"
+						height="32"
+						@click="drawer = !drawer"
+					></v-app-bar-nav-icon>
+					<v-img
+						alt="Vuetify Logo"
+						class="shrink mr-2 hidden-sm-and-down"
+						contain
+						src="./assets/logo.png"
+						transition="scale-transition"
+						width="32"
+					/>
+					<v-btn
+						v-for="item in items"
+						:key="item.a"
+						:to="item.to"
+						text
+						plain
+						class="hidden-sm-and-down"
+					>
+						{{ item.title }}
+					</v-btn>
+					<v-spacer></v-spacer>
+					<v-avatar color="grey darken-1" size="32"></v-avatar>
+					<v-btn icon @click="signOut" width="32" height="32">
+						<v-icon>mdi-login-variant</v-icon>
+					</v-btn>
+				</v-container>
+			</v-toolbar>
 		</v-app-bar>
 
 		<v-main>
@@ -99,7 +106,6 @@ export default {
 	data() {
 		return {
 			type: false,
-			links: ['Home', 'About', 'Project', 'Contact'],
 			drawer: false,
 			items: [
 				{
@@ -121,21 +127,45 @@ export default {
 					title: 'Contact',
 					icon: 'mdi-account-box',
 					to: '/contact'
+				},
+				{
+					title: 'lv0',
+					icon: 'mdi-text-long',
+					to: '/test/lv0'
+				},
+				{
+					title: 'lv1',
+					icon: 'mdi-text-long',
+					to: '/test/lv1'
+				},
+				{
+					title: 'lv2',
+					icon: 'mdi-text-long',
+					to: '/test/lv2'
 				}
 			]
 		}
 	},
 	methods: {
-		signOut() {
+		async signOut() {
 			this.$firebase.auth().signOut()
+			this.$router.push('/sign')
 			// this.$Progress.start()
 		}
 	}
 }
 </script>
 
-<style>
+<style lang="scss">
 #App {
 	background: #e5e5e5;
+}
+
+#toolbar-mo {
+	padding: 0 16px;
+}
+.v-toolbar__content,
+.v-toolbar__extension {
+	padding: 0 !important;
 }
 </style>

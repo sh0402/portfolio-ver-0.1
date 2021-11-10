@@ -101,6 +101,12 @@ export default {
 			const provider = new this.$firebase.auth.GoogleAuthProvider()
 			this.$firebase.auth().languageCode = 'ko'
 			await this.$firebase.auth().signInWithPopup(provider)
+			const user = this.$firebase.auth().crrentUser
+			await user.getIdToken()
+			await this.$store.dispatch('getUser', user)
+			if (this.$store.state.claims.level === undefined)
+				return this.$router.push('/userProfile')
+			this.$router.push('/')
 		},
 		async signInWithEmailAndPassword() {
 			if (!this.$refs.form.validate())

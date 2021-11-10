@@ -2,7 +2,7 @@
 	<v-container>
 		<v-row>
 			<v-col cols="12">
-				<v-card>
+				<v-card class="rounded-lg">
 					<v-row align="center" justify="center">
 						<v-col cols="12" lg="6">
 							<v-card-text>
@@ -17,7 +17,7 @@
 									packaging design. Thank you for visiting my portfolio site.
 								</p>
 
-								<p>{{ JSON.stringify($store.state.claims, null, 2) }}</p>
+								<!-- <p>{{ JSON.stringify($store.state.claims, null, 2) }}</p> -->
 							</v-card-text>
 						</v-col>
 						<v-col cols="12" lg="6">
@@ -34,7 +34,7 @@
 
 		<v-row>
 			<v-col cols="12" lg="4" md="5" sm="6">
-				<v-card>
+				<v-card class="rounded-lg">
 					<v-card-text class="d-flex align-center justify-space-between">
 						<h2>About</h2>
 						<v-btn icon>
@@ -69,7 +69,7 @@
 			</v-col>
 
 			<v-col cols="12" lg="8" md="7" sm="6">
-				<v-card>
+				<v-card class="rounded-lg">
 					<v-card-text class="d-flex align-center justify-space-between">
 						<h2>Works</h2>
 						<v-btn icon>
