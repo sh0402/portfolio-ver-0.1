@@ -1,36 +1,29 @@
 <template>
-	<v-container>
-		<v-row>
-			<v-col cols="12">
-				<v-card class="rounded-lg">
-					<v-row align="center" justify="center">
-						<v-col cols="12" lg="6">
-							<v-card-text>
-								<h1 class="text-h3 mb-4 font-weight-bold">
-									Products & Brand<br />
-									UI/UX & Web Design<br />
-									experiences.
-								</h1>
-								<p class="text-subtitle-2">
-									Hello, I'm Soohwan Kim, Designer of Web & Products. I
-									specialize in UI/UX design, responsive web design and product
-									packaging design. Thank you for visiting my portfolio site.
-								</p>
-
-								<!-- <p>{{ JSON.stringify($store.state.claims, null, 2) }}</p> -->
-							</v-card-text>
-						</v-col>
-						<v-col cols="12" lg="6">
-							<v-card-text>
-								<v-img
-									src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1173&q=80"
-								></v-img>
-							</v-card-text>
-						</v-col>
-					</v-row>
-				</v-card>
-			</v-col>
-		</v-row>
+	<v-container class="fill-height" style="max-width: 1200px">
+		<v-card>
+			<v-card-text>
+				<v-row class="align-center">
+					<v-col cols="12" lg="6">
+						<p class="text-lg-h3 text-md-h4 mb-4 font-weight-black">
+							Products & Brand<br />
+							UI/UX & Web Design<br />
+							experiences.
+						</p>
+						<p class="text-xl-subtitle-1" size="32">
+							Hello, I'm Soohwan Kim, Designer of Web & Products. I specialize
+							in UI/UX design, responsive web design and product packaging
+							design. Thank you for visiting my portfolio site.
+						</p>
+					</v-col>
+					<!-- <p>{{ JSON.stringify($store.state.claims, null, 2) }}</p> -->
+					<v-col cols="12" lg="6">
+						<v-img
+							src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1173&q=80"
+						></v-img>
+					</v-col>
+				</v-row>
+			</v-card-text>
+		</v-card>
 
 		<v-row>
 			<v-col cols="12" lg="4" md="5" sm="6">
@@ -124,3 +117,5 @@ export default {
 	components: {}
 }
 </script>
+
+<style lang="scss"></style>
