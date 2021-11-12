@@ -1,27 +1,27 @@
 const app = require('express')()
 const cors = require('cors')
+const admin = require('firebase-admin')
+const db = admin.firestore()
+require('express-async-errors')
 
-app.use(cors())
+app.use(cors({ origin: true }))
 
 app.use(require('../middlewares/verifyToken'))
 
-app.post('/', async (req, res) => {
-	res.send('post ok')
-})
-
-app.get('/', (req, res) => {
-	res.send('get ok')
-})
-app.get('/:id', (req, res) => {
-	res.send('get ok ' + req.params.id)
-})
-
-app.put('/:id', (req, res) => {
-	res.send('put ok ' + req.params.id)
-})
-
-app.delete('/:id', (req, res) => {
-	res.send('delete ok ' + req.params.id)
+app.get('/users', async (req, res) => {
+	if (req.claims.level > 0)
+		return res.status(403).send({
+			message: 'not authorized'
+		})
+	const sn = await db.collection('users').get()
+	const r = {
+		items: [],
+		totalCount: sn.size
+	}
+	// const items = []
+	sn.forEach(v => r.items.push(v.data()))
+	res.send(r)
+	res.send(sn.data)
 })
 
 app.use(require('../middlewares/error'))

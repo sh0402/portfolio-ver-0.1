@@ -32,7 +32,7 @@ export default new Vuex.Store({
 		async getUser({ commit }, user) {
 			commit('setFirebaseLoaded')
 			commit('setUser', user)
-			if (!user) return false
+			if (!user) return null
 			const token = await user.getIdToken()
 			commit('setToken', token)
 			const { claims } = await user.getIdTokenResult()
@@ -46,6 +46,7 @@ export default new Vuex.Store({
 			// 	// console.log(r)
 			// 	commit('setClaims', r.claims)
 			// })
+			return true
 		}
 	},
 	modules: {}

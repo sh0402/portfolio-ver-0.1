@@ -101,7 +101,7 @@ export default {
 			const provider = new this.$firebase.auth.GoogleAuthProvider()
 			this.$firebase.auth().languageCode = 'ko'
 			await this.$firebase.auth().signInWithPopup(provider)
-			const user = this.$firebase.auth().crrentUser
+			const user = this.$firebase.auth().currentUser
 			await user.getIdToken()
 			await this.$store.dispatch('getUser', user)
 			if (this.$store.state.claims.level === undefined)
