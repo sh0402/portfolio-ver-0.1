@@ -63,7 +63,7 @@ const router = new VueRouter({
 		{
 			path: '/admin/users',
 			component: () => import('../views/admin/users'),
-			beforeEnter: adminCheck
+			beforeEnter: guestCheck //adminCheck
 		},
 		{
 			path: '/test/lv0',
@@ -119,8 +119,10 @@ const waitFirebase = () => {
 			if (store.state.firebaseLoaded) {
 				clearInterval(tmr)
 				resolve()
-			} else if (cnt++ > 200)
+			} else if (cnt++ > 200) {
+				clearInterval(tmr)
 				reject(Error('제한 시간 초과, 인터넷 연결을 확인하세요'))
+			}
 		}, 10)
 	})
 }

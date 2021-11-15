@@ -8,20 +8,53 @@ app.use(cors({ origin: true }))
 
 app.use(require('../middlewares/verifyToken'))
 
-app.get('/users', async (req, res) => {
+app.use((req, res, next) => {
 	if (req.claims.level > 0)
 		return res.status(403).send({
 			message: 'not authorized'
 		})
-	const sn = await db.collection('users').get()
+	next()
+})
+
+app.get('/users', async (req, res) => {
+	let { offset, limit, order, sort, search } = req.query
+	offset = Number(offset)
+	limit = Number(limit)
 	const r = {
 		items: [],
-		totalCount: sn.size
+		totalCount: 0
 	}
-	// const items = []
-	sn.forEach(v => r.items.push(v.data()))
+	let sn = null
+	if (search) {
+		sn = await db.collection('users').where('email', '==', search).get()
+		r.totalCount = sn.size
+	} else {
+		const t = await db.collection('infos').doc('users').get()
+		r.totalCount = t.data().counter
+		sn = await db
+			.collection('users')
+			.orderBy(order, sort)
+			.offset(offset)
+			.limit(limit)
+			.get()
+	}
+	sn.forEach(v => {
+		r.items.push(v.data())
+	})
 	res.send(r)
-	res.send(sn.data)
+})
+
+app.get('/search', async (req, res) => {
+	const sn = await db
+		.collection('users')
+		.where('email', '>=', req.query.search)
+		.limit(3)
+		.get()
+	const items = []
+	sn.forEach(v => {
+		items.push(v.data().email)
+	})
+	res.send(items)
 })
 
 app.use(require('../middlewares/error'))
