@@ -53,7 +53,7 @@
 					v-model="form.email"
 					:rules="[
 						rule.required,
-						rule.minLength(7),
+						rule.minLength(3),
 						rule.maxLength(50),
 						rule.email
 					]"
@@ -64,7 +64,7 @@
 				<v-text-field
 					label="Password"
 					v-model="form.password"
-					:rules="[rule.required, rule.minLength(8), rule.maxLength(12)]"
+					:rules="[rule.required, rule.minLength(6), rule.maxLength(12)]"
 					required
 					type="password"
 				></v-text-field>

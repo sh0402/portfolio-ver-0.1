@@ -39,7 +39,7 @@
 					v-model="form.email"
 					:rules="[
 						rule.required,
-						rule.minLength(7),
+						rule.minLength(5),
 						rule.maxLength(50),
 						rule.email
 					]"
@@ -50,7 +50,7 @@
 				<v-text-field
 					label="Password"
 					v-model="form.password"
-					:rules="[rule.required, rule.minLength(8), rule.maxLength(12)]"
+					:rules="[rule.required, rule.minLength(6), rule.maxLength(12)]"
 					required
 					type="password"
 				></v-text-field>
@@ -117,6 +117,12 @@ export default {
 				.auth()
 				.signInWithEmailAndPassword(this.form.email, this.form.password)
 			alert('Success')
+			const user = this.$firebase.auth().currentUser
+			await user.getIdToken()
+			await this.$store.dispatch('getUser', user)
+			if (this.$store.claims.level === undefined)
+				return this.$router.push('/userProfile')
+			this.$router.push('/')
 		}
 	}
 }

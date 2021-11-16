@@ -23,7 +23,7 @@ export default {
 		return {
 			headers: [
 				{
-					text: 'User-Key',
+					text: 'uid',
 					value: 'uid'
 				},
 				{ text: '이메일', value: 'email' },
@@ -38,9 +38,8 @@ export default {
 	},
 	methods: {
 		async list() {
-			const { data } = await this.$axios.get('/admin/users')
-			this.totalCount = data.totalCount
-			this.items = data.items
+			const r = await this.$axios.get('/admin/users')
+			console.log(r)
 		}
 	}
 }

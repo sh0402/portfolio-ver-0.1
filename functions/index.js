@@ -12,8 +12,6 @@ const db = admin.firestore()
 
 console.log(functions.config().admin.email)
 
-// console.log(functions.config().admin.email)
-
 exports.helloWorld = functions.https.onRequest((request, response) => {
 	response.send('Hello from Firebase!')
 })
@@ -39,7 +37,7 @@ exports.createUser = functions.auth.user().onCreate(async user => {
 	return r
 })
 
-exports.deleteUser = functions.auth.user().onDelete(user => {
+exports.deleteUser = functions.auth.user().onDelete(async user => {
 	const r = db.collection('users').doc(user.uid).delete()
 	return r
 })
