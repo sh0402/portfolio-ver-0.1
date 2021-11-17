@@ -31,7 +31,8 @@ exports.createUser = functions.auth.user().onCreate(async user => {
 		displayName,
 		emailVerified,
 		photoURL,
-		disabled
+		disabled,
+		level: claims.level
 	}
 	const r = await db.collection('users').doc(uid).set(d)
 	return r

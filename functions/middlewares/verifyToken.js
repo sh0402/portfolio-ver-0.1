@@ -10,7 +10,6 @@ module.exports = (req, res, next) => {
 		.verifyIdToken(req.headers.authorization)
 		.then(decodedToken => {
 			req.claims = decodedToken
-			console.log(decodedToken)
 			next()
 			// ...
 		})

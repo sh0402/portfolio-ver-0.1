@@ -96,17 +96,20 @@
 										</v-card>
 									</v-col>
 
-									<v-col cols="12">
+									<v-col cols="12" class="my-4">
 										<span class="font-weight-bold">
 											{{ $store.state.user.displayName }}
 										</span>
+
 										<br />
+
 										<span>
 											{{ $store.state.user.email }}
 										</span>
 									</v-col>
 
-									<v-col>
+									<v-col cols="12">
+										<v-divider class="mb-4"></v-divider>
 										<v-btn block color="warning" @click="signOut">
 											Log-out
 										</v-btn>

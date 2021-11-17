@@ -17,8 +17,13 @@ Vue.prototype.$isFirebaseAuth = false
 
 firebase.auth().onAuthStateChanged(user => {
 	store.dispatch('getUser', user)
-	const { uid, email, displayName, emailVerified, claims } = user
-	const userData = { uid, email, displayName, emailVerified, claims }
+	const { uid, email, displayName, emailVerified } = user
+	const userData = {
+		uid,
+		email,
+		displayName,
+		emailVerified
+	}
 	console.log(userData)
 	// 	.then(() => {
 	// 	if (user) {

@@ -1,5 +1,5 @@
 <template>
-	<v-container style="max-width: 1200px" fluid>
+	<v-container style="max-width: 1200px" grid-list-md fluid>
 		<v-card>
 			<v-toolbar dark color="teal">
 				<v-toolbar-title>Members</v-toolbar-title>
@@ -27,17 +27,17 @@
 					:items="items"
 					:options.sync="options"
 					:server-items-length="totalCount"
-					:items-per-page="4"
 					:loading="loading"
+					:items-per-page="4"
 				>
 					<template v-slot:default="props">
-						<v-row wrap>
-							<v-flex xs12 v-if="loading" class="text-center">
+						<v-row>
+							<v-col xs="12" v-if="loading" class="text-center">
 								<v-progress-circular
 									indeterminate
 									color="primary"
 								></v-progress-circular>
-							</v-flex>
+							</v-col>
 							<v-col
 								v-for="item in props.items"
 								:key="item.email"
@@ -68,6 +68,8 @@
 													v-model="item.level"
 													:items="levels"
 													solo
+													hide-details
+													@change="levelChange(item)"
 												></v-select>
 											</v-list-item-subtitle>
 										</v-list-item-content>
@@ -75,6 +77,11 @@
 								</v-card>
 							</v-col>
 						</v-row>
+
+						<v-card-actions>
+							<v-spacer></v-spacer>
+							<v-btn @click="list">get list</v-btn>
+						</v-card-actions>
 					</template>
 				</v-data-iterator>
 			</v-card-text>
@@ -163,7 +170,6 @@ export default {
 			this.totalCount = r.data.totalCount
 			this.items = r.data.items
 			this.loading = false
-			// console.log(this.options)
 		},
 		// async searchEmails() {
 		// 	this.loadingSearch = true
@@ -188,8 +194,12 @@ export default {
 				})
 				.finally(() => {
 					this.loadingSearch = false
+					this.list()
 				})
-		}, 500)
+		}, 500),
+		levelChange(v) {
+			console.log(v)
+		}
 	}
 }
 </script>
