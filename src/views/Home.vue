@@ -1,31 +1,35 @@
 <template>
-	<v-container class="fill-height" style="max-width: 1200px">
-		<v-card>
-			<v-card-text>
-				<v-row class="align-center">
-					<v-col cols="12" lg="6">
-						<p class="text-lg-h3 text-md-h4 mb-4 font-weight-black">
-							Products & Brand<br />
-							UI/UX & Web Design<br />
-							experiences.
-						</p>
-						<p class="text-xl-subtitle-1" size="32">
-							Hello, I'm Soohwan Kim, Designer of Web & Products. I specialize
-							in UI/UX design, responsive web design and product packaging
-							design. Thank you for visiting my portfolio site.
-						</p>
-					</v-col>
-					<!-- <p>{{ JSON.stringify($store.state.claims, null, 2) }}</p> -->
-					<v-col cols="12" lg="6">
-						<v-img
-							src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1173&q=80"
-						></v-img>
-					</v-col>
-				</v-row>
-			</v-card-text>
-		</v-card>
+	<v-container style="max-width: 1200px" fluid>
+		<v-row dense>
+			<v-col cols="12">
+				<v-card class="rounded-lg">
+					<v-card-text>
+						<v-row class="align-center">
+							<v-col cols="12" lg="6">
+								<p class="text-lg-h3 text-md-h4 mb-4 font-weight-black">
+									Products & Brand<br />
+									UI/UX & Web Design<br />
+									experiences.
+								</p>
+								<p class="text-xl-subtitle-1" size="32">
+									Hello, I'm Soohwan Kim, Designer of Web & Products. I
+									specialize in UI/UX design, responsive web design and product
+									packaging design. Thank you for visiting my portfolio site.
+								</p>
+							</v-col>
+							<!-- <p>{{ JSON.stringify($store.state.claims, null, 2) }}</p> -->
+							<v-col cols="12" lg="6">
+								<v-img
+									src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1173&q=80"
+								></v-img>
+							</v-col>
+						</v-row>
+					</v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
 
-		<v-row>
+		<v-row dense>
 			<v-col cols="12" lg="4" md="5" sm="6">
 				<v-card class="rounded-lg">
 					<v-card-text class="d-flex align-center justify-space-between">
@@ -34,7 +38,6 @@
 							<v-icon>mdi-dots-vertical</v-icon>
 						</v-btn>
 					</v-card-text>
-
 					<v-card-text class="d-flex flex-column align-center">
 						<v-img
 							width="200"
@@ -44,7 +47,6 @@
 						>
 						</v-img>
 					</v-card-text>
-
 					<v-card-text>
 						<h2 class="mb-4">Lorem ipsum dolor sit amet, consectetur</h2>
 						<v-chip-group column multiple>
@@ -60,7 +62,6 @@
 					</v-card-text>
 				</v-card>
 			</v-col>
-
 			<v-col cols="12" lg="8" md="7" sm="6">
 				<v-card class="rounded-lg">
 					<v-card-text class="d-flex align-center justify-space-between">
@@ -69,12 +70,10 @@
 							<v-icon>mdi-dots-vertical</v-icon>
 						</v-btn>
 					</v-card-text>
-
 					<v-card-text>
 						<h2 class="mb-4">
 							Design that solves problems, one product at a time
 						</h2>
-
 						<v-sheet class="mx-auto">
 							<v-slide-group class="pa-0" center-active show-arrows>
 								<v-slide-item

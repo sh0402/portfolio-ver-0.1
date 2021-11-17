@@ -37,7 +37,39 @@ exports.createUser = functions.auth.user().onCreate(async user => {
 	return r
 })
 
+<<<<<<< HEAD
 exports.deleteUser = functions.auth.user().onDelete(async user => {
 	const r = db.collection('users').doc(user.uid).delete()
 	return r
+=======
+exports.deleteUser = functions.auth.user().onDelete(user => {
+	return db.collection('users').doc(user.uid).delete()
+>>>>>>> 75403258bb38d3cf0d566759539c722817b3dc2a
 })
+
+exports.incrementUserCount = functions.firestore
+	.document('users/{userId}')
+	// eslint-disable-next-line no-unused-vars
+	.onCreate((snap, context) => {
+		return db
+			.collection('infos')
+			.doc('users')
+			.update('counter', admin.firestore.FieldValue.increment(1))
+	})
+
+exports.decrementUserCount = functions.firestore
+	.document('users/{userID}')
+	// eslint-disable-next-line no-unused-vars
+	.onDelete((snap, context) => {
+		return db
+			.collection('infos')
+			.doc('users')
+			.update('counter', admin.firestore.FieldValue.increment(-1))
+	})
+
+db.collection('infos')
+	.doc('users')
+	.get()
+	.then(sn => {
+		if (!sn.exists) db.collection('infos').doc('users').set({ counter: 0 })
+	})

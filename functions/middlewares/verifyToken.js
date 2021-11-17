@@ -1,10 +1,24 @@
 const admin = require('firebase-admin')
-// const db = admin.firestore()
+const db = admin.firestore()
+
+module.exports = async (req, res, next) => {
+	console.log(JSON.stringify(req.headers))
+	console.log('here')
+
+	const decodedToken = await admin
+		.auth()
+		.verifyIdToken(req.headers.authorization)
+	req.claims = decodedToken
+	const sn = await db.collection('users').doc(decodedToken.user_id).get()
+	req.user = sn.data()
+	next()
+}
 
 module.exports = (req, res, next) => {
 	console.log(JSON.stringify(req.headers))
 	console.log('here')
 
+<<<<<<< HEAD
 	admin
 		.auth()
 		.verifyIdToken(req.headers.authorization)
@@ -20,6 +34,8 @@ module.exports = (req, res, next) => {
 	next()
 }
 
+=======
+>>>>>>> 75403258bb38d3cf0d566759539c722817b3dc2a
 // module.exports = async (req, res, next) => {
 // 	const decodedToken = await admin
 // 		.auth()

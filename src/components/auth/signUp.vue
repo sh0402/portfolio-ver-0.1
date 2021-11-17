@@ -37,14 +37,14 @@
 				<v-text-field
 					label="First Name"
 					v-model="form.firstName"
-					:rules="[rule.required, rule.minLength(1), rule.maxLength(7)]"
+					:rules="[rule.required, rule.minLength(1), rule.maxLength(5)]"
 					required
 				></v-text-field>
 
 				<v-text-field
 					label="Last Name"
 					v-model="form.lastName"
-					:rules="[rule.required, rule.minLength(1), rule.maxLength(7)]"
+					:rules="[rule.required, rule.minLength(1), rule.maxLength(5)]"
 					required
 				></v-text-field>
 
@@ -53,7 +53,11 @@
 					v-model="form.email"
 					:rules="[
 						rule.required,
+<<<<<<< HEAD
 						rule.minLength(3),
+=======
+						rule.minLength(5),
+>>>>>>> 75403258bb38d3cf0d566759539c722817b3dc2a
 						rule.maxLength(50),
 						rule.email
 					]"

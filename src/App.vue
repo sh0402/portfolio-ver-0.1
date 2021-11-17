@@ -39,44 +39,48 @@
 
 		<v-app-bar app color="white">
 			<v-toolbar max-width="1200" class="mx-auto" flat>
-				<v-container class="py-0 fill-height">
-					<v-app-bar-nav-icon
-						class="hidden-md-and-up"
-						width="32"
-						height="32"
-						@click="drawer = !drawer"
-					></v-app-bar-nav-icon>
-					<v-img
-						alt="Vuetify Logo"
-						class="shrink mr-2 hidden-sm-and-down"
-						contain
-						src="./assets/logo.png"
-						transition="scale-transition"
-						width="32"
-					/>
-					<v-btn
-						v-for="item in items"
-						:key="item.a"
-						:to="item.to"
-						text
-						plain
-						class="hidden-sm-and-down"
-					>
-						{{ item.title }}
-					</v-btn>
-					<v-spacer></v-spacer>
-					<v-avatar color="grey darken-1" size="32"></v-avatar>
-					<v-btn icon @click="signOut" width="32" height="32">
-						<v-icon>mdi-login-variant</v-icon>
-					</v-btn>
-				</v-container>
+				<v-app-bar-nav-icon
+					class="hidden-md-and-up"
+					width="32"
+					height="32"
+					@click="drawer = !drawer"
+				></v-app-bar-nav-icon>
+				<v-img
+					alt="Vuetify Logo"
+					class="shrink mr-2 hidden-sm-and-down"
+					contain
+					src="./assets/logo.png"
+					transition="scale-transition"
+					width="32"
+				/>
+				<v-btn
+					v-for="item in items"
+					:key="item.a"
+					:to="item.to"
+					text
+					plain
+					class="hidden-sm-and-down"
+				>
+					{{ item.title }}
+				</v-btn>
+				<v-spacer></v-spacer>
+				<v-avatar color="grey darken-1" size="32"></v-avatar>
+				<v-btn icon @click="signOut" width="32" height="32">
+					<v-icon>mdi-login-variant</v-icon>
+				</v-btn>
 			</v-toolbar>
 		</v-app-bar>
 
 		<v-main>
-			<v-container grid-list-md>
-				<v-layout row wrap align-center text-center justify-center>
-					<v-card color="transparent" flat v-if="!$store.state.firebaseLoaded">
+			<vue-progress-bar></vue-progress-bar>
+
+			<v-container
+				style="max-width: 1200px"
+				grid-list-md
+				v-if="!$store.state.firebaseLoaded"
+			>
+				<v-layout row wrap text-center align-center justify-center>
+					<v-card color="transparent" flat>
 						<v-card-text>
 							<v-progress-circular
 								indeterminate
@@ -163,9 +167,5 @@ export default {
 
 #toolbar-mo {
 	padding: 0 16px;
-}
-.v-toolbar__content,
-.v-toolbar__extension {
-	padding: 0 !important;
 }
 </style>
