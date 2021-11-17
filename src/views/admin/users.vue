@@ -23,17 +23,6 @@
 			</v-toolbar>
 
 			<v-card-text>
-				<!-- <v-data-table
-					:headers="headers"
-					:items="items"
-					:server-items-length="totalCount"
-					:options.sync="options"
-					:items-per-page="5"
-					:loading="loading"
-					class="elevation-1"
-					must-sort
-				></v-data-table> -->
-
 				<v-data-iterator
 					:items="items"
 					:options.sync="options"
@@ -158,11 +147,6 @@ export default {
 	},
 	methods: {
 		async list() {
-<<<<<<< HEAD
-			const r = await this.$axios.get('/admin/users')
-			console.log(r)
-		}
-=======
 			this.loading = true
 			const r = await this.$axios.get('/admin/users', {
 				params: {
@@ -206,7 +190,6 @@ export default {
 					this.loadingSearch = false
 				})
 		}, 500)
->>>>>>> 75403258bb38d3cf0d566759539c722817b3dc2a
 	}
 }
 </script>

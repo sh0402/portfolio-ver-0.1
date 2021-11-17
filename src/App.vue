@@ -63,10 +63,58 @@
 				>
 					{{ item.title }}
 				</v-btn>
+
 				<v-spacer></v-spacer>
-				<v-avatar color="grey darken-1" size="32"></v-avatar>
+
+				<!-- <v-avatar color="grey darken-1" size="32"></v-avatar>
 				<v-btn icon @click="signOut" width="32" height="32">
 					<v-icon>mdi-login-variant</v-icon>
+				</v-btn> -->
+				<!-- <v-toolbar-side-icon v-if="$store.state.user"></v-toolbar-side-icon> -->
+
+				<v-btn icon v-if="$store.state.user">
+					<v-menu offset-y>
+						<template v-slot:activator="{ on }">
+							<v-btn icon v-on="on">
+								<v-avatar size="32" color="grey lighten-4">
+									<img :src="$store.state.user.photoURL" alt="avatar" />
+								</v-avatar>
+							</v-btn>
+						</template>
+
+						<v-card width="320">
+							<v-container>
+								<v-row dense>
+									<v-col cols="12">
+										<v-card elevation="0" disabled>
+											<v-img
+												:src="$store.state.user.photoURL"
+												alt="avatar"
+												aspect-ratio="2"
+												max-height="150"
+											/>
+										</v-card>
+									</v-col>
+
+									<v-col cols="12">
+										<span class="font-weight-bold">
+											{{ $store.state.user.displayName }}
+										</span>
+										<br />
+										<span>
+											{{ $store.state.user.email }}
+										</span>
+									</v-col>
+
+									<v-col>
+										<v-btn block color="warning" @click="signOut">
+											Log-out
+										</v-btn>
+									</v-col>
+								</v-row>
+							</v-container>
+						</v-card>
+					</v-menu>
 				</v-btn>
 			</v-toolbar>
 		</v-app-bar>
@@ -98,15 +146,8 @@
 </template>
 
 <script>
-// import SignIn from '@/components/auth/signIn'
-// import SignUp from '@/components/auth/signIn'
-
 export default {
 	name: 'App',
-	components: {
-		// SignIn,
-		// SignUp
-	},
 	data() {
 		return {
 			type: false,

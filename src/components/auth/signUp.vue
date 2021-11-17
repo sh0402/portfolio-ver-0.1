@@ -53,11 +53,7 @@
 					v-model="form.email"
 					:rules="[
 						rule.required,
-<<<<<<< HEAD
-						rule.minLength(3),
-=======
 						rule.minLength(5),
->>>>>>> 75403258bb38d3cf0d566759539c722817b3dc2a
 						rule.maxLength(50),
 						rule.email
 					]"

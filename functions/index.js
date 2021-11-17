@@ -37,14 +37,8 @@ exports.createUser = functions.auth.user().onCreate(async user => {
 	return r
 })
 
-<<<<<<< HEAD
-exports.deleteUser = functions.auth.user().onDelete(async user => {
-	const r = db.collection('users').doc(user.uid).delete()
-	return r
-=======
 exports.deleteUser = functions.auth.user().onDelete(user => {
 	return db.collection('users').doc(user.uid).delete()
->>>>>>> 75403258bb38d3cf0d566759539c722817b3dc2a
 })
 
 exports.incrementUserCount = functions.firestore
