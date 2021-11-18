@@ -2,7 +2,7 @@ const admin = require('firebase-admin')
 // const db = admin.firestore()
 
 module.exports = (req, res, next) => {
-	console.log(JSON.stringify(req.headers))
+	// console.log(JSON.stringify(req.headers))
 	console.log('here')
 
 	admin

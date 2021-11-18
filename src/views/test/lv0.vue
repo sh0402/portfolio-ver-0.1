@@ -1,5 +1,5 @@
 <template>
-	<v-card> lv0 </v-card>
+	<v-card>lv0</v-card>
 </template>
 
 <script>

@@ -9,8 +9,11 @@
 				flat
 			>
 				<v-toolbar-title class="pr-4"> Soot's Portfoilo </v-toolbar-title>
+
 				<span class="caption">ver.0.0.1</span>
+
 				<v-spacer></v-spacer>
+
 				<v-btn icon @click="drawer = false">
 					<v-icon>mdi-close</v-icon>
 				</v-btn>
@@ -23,16 +26,12 @@
 					<v-list-item-avatar>
 						<v-icon>{{ item.icon }}</v-icon>
 					</v-list-item-avatar>
+
 					<v-list-item-content>
 						<v-list-item-title>
 							{{ (item.title, item.to) }}
 						</v-list-item-title>
 					</v-list-item-content>
-					<!-- <v-list-item-action>
-						<v-btn icon ripple>
-							<v-icon color="grey lighten-1"> mdi-chevron-down </v-icon>
-						</v-btn>
-					</v-list-item-action> -->
 				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>
@@ -65,12 +64,6 @@
 				</v-btn>
 
 				<v-spacer></v-spacer>
-
-				<!-- <v-avatar color="grey darken-1" size="32"></v-avatar>
-				<v-btn icon @click="signOut" width="32" height="32">
-					<v-icon>mdi-login-variant</v-icon>
-				</v-btn> -->
-				<!-- <v-toolbar-side-icon v-if="$store.state.user"></v-toolbar-side-icon> -->
 
 				<v-btn icon v-if="$store.state.user">
 					<v-menu offset-y>

@@ -66,6 +66,11 @@ const router = new VueRouter({
 			beforeEnter: guestCheck //adminCheck
 		},
 		{
+			path: '/admin/users2',
+			component: () => import('../views/admin/users2'),
+			beforeEnter: guestCheck //adminCheck
+		},
+		{
 			path: '/test/lv0',
 			component: () => import('../views/test/lv0'),
 			beforeEnter: adminCheck
@@ -104,6 +109,10 @@ const router = new VueRouter({
 		{
 			path: '/lectures/vuex',
 			component: () => import('../views/lectures/vuex')
+		},
+		{
+			path: '/lectures/storage',
+			component: () => import('../views/lectures/storage')
 		},
 		{
 			path: '*',
